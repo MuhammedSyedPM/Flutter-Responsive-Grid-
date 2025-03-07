@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
@@ -124,21 +123,34 @@ class _ProductListPageState extends State<ProductListPage> {
               style: TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 4),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('₹${price.toStringAsFixed(2)}',
-                    style:
-                        TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold)),
-                SizedBox(width: 6),
-                if (mrp > price)
-                  Text('₹${mrp.toStringAsFixed(2)}',
-                      style: TextStyle(
-                          fontSize: fontSize * 0.9,
-                          decoration: TextDecoration.lineThrough,
-                          color: Colors.grey)),
-              ],
-            ),
+        Row(
+  mainAxisAlignment: MainAxisAlignment.center,
+  children: [
+    Flexible(
+      child: Text(
+        '₹${price.toStringAsFixed(2)}',
+        style: TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold),
+        overflow: TextOverflow.ellipsis,
+        maxLines: 1,
+      ),
+    ),
+    SizedBox(width: 6),
+    if (mrp > price)
+      Flexible(
+        child: Text(
+          '₹${mrp.toStringAsFixed(2)}',
+          style: TextStyle(
+            fontSize: fontSize * 0.9,
+            decoration: TextDecoration.lineThrough,
+            color: Colors.grey,
+          ),
+          overflow: TextOverflow.ellipsis,
+          maxLines: 1,
+        ),
+      ),
+  ],
+),
+
             SizedBox(height: 8),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
